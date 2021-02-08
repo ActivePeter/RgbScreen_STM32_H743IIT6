@@ -1,14 +1,20 @@
 {
+    // "prjfolder": "rgbScreen_stm32h743iitx_prj",
     "configurations": [
         {
             "name": "Win32",
             "includePath": [
                 // "${workspaceFolder}/**",
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Core/Inc",
                 "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/_My",
                 "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/_My/pa_CommonLib/src",
                 "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS",
                 "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Middlewares/Third_Party/FreeRTOS/Source/include",
-                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F"
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F",
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/STM32H7xx_HAL_Driver/Inc",
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy",
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/CMSIS/Device/ST/STM32H7xx/Include",
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/CMSIS/Include"
             ],
             "defines": [
                 "_DEBUG",
@@ -22,7 +28,7 @@
             "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.26.28801/bin/Hostx64/x64/cl.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "msvc-x64"
+            "intelliSenseMode": "msvc-x64",
         }
     ],
     "version": 4
