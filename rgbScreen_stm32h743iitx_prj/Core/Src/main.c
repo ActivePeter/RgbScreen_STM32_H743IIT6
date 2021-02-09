@@ -38,12 +38,11 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-
+// #include "main_app/main_app_C.h"
+// #include "paLib/drv/pa_BaseDrv/pa_BaseDrv.h"
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-
-I2C_HandleTypeDef hi2c1;
 
 LTDC_HandleTypeDef hltdc;
 
@@ -63,13 +62,12 @@ osThreadId defaultTaskHandle;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
-static void MX_I2C1_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_SPI2_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 static void MX_FMC_Init(void);
-static void MX_LTDC_Init(void);
+void MX_LTDC_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
@@ -104,18 +102,16 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+#define GFXMMU_VIRTUAL_BUFFER0_BASE 0
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_I2C1_Init();
   MX_SPI1_Init();
   MX_SPI2_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
   MX_FMC_Init();
-  MX_LTDC_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -220,8 +216,8 @@ void SystemClock_Config(void)
     Error_Handler();
   }
   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_LTDC|RCC_PERIPHCLK_SPI1
-                              |RCC_PERIPHCLK_SPI2|RCC_PERIPHCLK_I2C1
-                              |RCC_PERIPHCLK_USB|RCC_PERIPHCLK_FMC;
+                              |RCC_PERIPHCLK_SPI2|RCC_PERIPHCLK_USB
+                              |RCC_PERIPHCLK_FMC;
   PeriphClkInitStruct.PLL2.PLL2M = 32;
   PeriphClkInitStruct.PLL2.PLL2N = 129;
   PeriphClkInitStruct.PLL2.PLL2P = 2;
@@ -234,13 +230,12 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLL3.PLL3N = 129;
   PeriphClkInitStruct.PLL3.PLL3P = 2;
   PeriphClkInitStruct.PLL3.PLL3Q = 2;
-  PeriphClkInitStruct.PLL3.PLL3R = 2;
+  PeriphClkInitStruct.PLL3.PLL3R = 11;
   PeriphClkInitStruct.PLL3.PLL3RGE = RCC_PLL3VCIRANGE_1;
   PeriphClkInitStruct.PLL3.PLL3VCOSEL = RCC_PLL3VCOWIDE;
   PeriphClkInitStruct.PLL3.PLL3FRACN = 0;
   PeriphClkInitStruct.FmcClockSelection = RCC_FMCCLKSOURCE_D1HCLK;
   PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL2;
-  PeriphClkInitStruct.I2c123ClockSelection = RCC_I2C123CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_HSI48;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
@@ -252,61 +247,15 @@ void SystemClock_Config(void)
 }
 
 /**
-  * @brief I2C1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C1_Init(void)
-{
-
-  /* USER CODE BEGIN I2C1_Init 0 */
-
-  /* USER CODE END I2C1_Init 0 */
-
-  /* USER CODE BEGIN I2C1_Init 1 */
-
-  /* USER CODE END I2C1_Init 1 */
-  hi2c1.Instance = I2C1;
-  hi2c1.Init.Timing = 0x307075B1;
-  hi2c1.Init.OwnAddress1 = 0;
-  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c1.Init.OwnAddress2 = 0;
-  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure Analogue filter
-  */
-  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure Digital filter
-  */
-  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C1_Init 2 */
-
-  /* USER CODE END I2C1_Init 2 */
-
-}
-
-/**
   * @brief LTDC Initialization Function
   * @param None
   * @retval None
   */
-static void MX_LTDC_Init(void)
+void MX_LTDC_Init(void)
 {
 
   /* USER CODE BEGIN LTDC_Init 0 */
-
+  extern char Ltdc_buff[];
   /* USER CODE END LTDC_Init 0 */
 
   LTDC_LayerCfgTypeDef pLayerCfg = {0};
@@ -330,7 +279,7 @@ static void MX_LTDC_Init(void)
   hltdc.Init.TotalHeigh = 487;
   hltdc.Init.Backcolor.Blue = 0;
   hltdc.Init.Backcolor.Green = 0;
-  hltdc.Init.Backcolor.Red = 0;
+  hltdc.Init.Backcolor.Red = 255;
   if (HAL_LTDC_Init(&hltdc) != HAL_OK)
   {
     Error_Handler();
@@ -347,7 +296,7 @@ static void MX_LTDC_Init(void)
   pLayerCfg.FBStartAdress = 0;
   pLayerCfg.ImageWidth = 0;
   pLayerCfg.ImageHeight = 0;
-  pLayerCfg.Backcolor.Blue = 0;
+  pLayerCfg.Backcolor.Blue = 255;
   pLayerCfg.Backcolor.Green = 0;
   pLayerCfg.Backcolor.Red = 0;
   if (HAL_LTDC_ConfigLayer(&hltdc, &pLayerCfg, 0) != HAL_OK)
@@ -358,12 +307,11 @@ static void MX_LTDC_Init(void)
   pLayerCfg1.WindowX1 = 0;
   pLayerCfg1.WindowY0 = 0;
   pLayerCfg1.WindowY1 = 0;
-  pLayerCfg1.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
   pLayerCfg1.Alpha = 0;
   pLayerCfg1.Alpha0 = 0;
   pLayerCfg1.BlendingFactor1 = LTDC_BLENDING_FACTOR1_CA;
   pLayerCfg1.BlendingFactor2 = LTDC_BLENDING_FACTOR2_CA;
-  pLayerCfg1.FBStartAdress = 0;
+  pLayerCfg1.FBStartAdress = GFXMMU_VIRTUAL_BUFFER0_BASE;
   pLayerCfg1.ImageWidth = 0;
   pLayerCfg1.ImageHeight = 0;
   pLayerCfg1.Backcolor.Blue = 0;
@@ -633,7 +581,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOE, stepperMs1_Pin|stepperMs2_Pin|stepperMs3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOE, stepperMs1_Pin|LCD_CLK_Pin|stepperMs3_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(arm_En2_GPIO_Port, arm_En2_Pin, GPIO_PIN_RESET);
@@ -645,8 +593,11 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOD, arm_dir0_Pin|arm_dir1_Pin|arm_dir2_Pin|arm_En0_Pin
                           |arm_En1_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : stepperMs1_Pin stepperMs2_Pin stepperMs3_Pin */
-  GPIO_InitStruct.Pin = stepperMs1_Pin|stepperMs2_Pin|stepperMs3_Pin;
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_6|GPIO_PIN_7, GPIO_PIN_RESET);
+
+  /*Configure GPIO pins : stepperMs1_Pin LCD_CLK_Pin stepperMs3_Pin */
+  GPIO_InitStruct.Pin = stepperMs1_Pin|LCD_CLK_Pin|stepperMs3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -680,6 +631,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : PB6 PB7 */
+  GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 

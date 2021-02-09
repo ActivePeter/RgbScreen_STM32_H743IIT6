@@ -60,8 +60,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define stepperMs1_Pin GPIO_PIN_2
 #define stepperMs1_GPIO_Port GPIOE
-#define stepperMs2_Pin GPIO_PIN_3
-#define stepperMs2_GPIO_Port GPIOE
+#define LCD_CLK_Pin GPIO_PIN_3
+#define LCD_CLK_GPIO_Port GPIOE
 #define stepperMs3_Pin GPIO_PIN_4
 #define stepperMs3_GPIO_Port GPIOE
 #define leftArmLimit_Pin GPIO_PIN_5

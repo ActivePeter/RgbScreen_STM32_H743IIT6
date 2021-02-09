@@ -1,16 +1,6 @@
 {
     "paLib": {
-        "_platform": {
-            "mcu_stm32_h7": 1,
-            "freertos": 1,
-            "rtthread": "0"
-        },
         "service": {
-            "TI_Chips": {
-                "pa_Ads1112": {
-                    "use_Ads1112": 0
-                }
-            },
             "input": {
                 "pa_Keypad": {
                     "INPUT_USE_KEYPAD": 0,
@@ -26,10 +16,25 @@
                     "keypad_col4": "GPIOA,GPIO_PIN_1"
                 }
             },
+            "TI_Chips": {
+                "pa_Ads1112": {
+                    "use_Ads1112": 0
+                }
+            },
             "display": {
                 "_RgbScreen": {
+                    "UseRgbScreen": 1,
                     "R61408": {
-                        "DISPLAY_USE_R61408": 1
+                        "DISPLAY_USE_R61408": 1,
+                        "R61408_SPI_DCLK": "GPIOB,GPIO_PIN_7",
+                        "R61408_SPI_SDA": "GPIOB,GPIO_PIN_6",
+                        "R61408_SPI_CS": "GPIOE,GPIO_PIN_3",
+                        "R61408_RST": "GPIOE,GPIO_PIN_2"
+                    }
+                },
+                "_ConvertIC": {
+                    "SSD1963": {
+                        "DISPLAY_USE_SSD1963": 0
                     }
                 },
                 "ssd1306": {
@@ -38,15 +43,23 @@
             }
         },
         "drv": {
-            "pa_HardwareSPI": {
-                "drv_spi": "1"
+            "pa_Ltdc": {
+                "drv_ltdc": 1
+            },
+            "pa_PWM": {
+                "drv_pwm": "1"
             },
             "pa_HardwareIIC": {
                 "drv_iic": "1"
             },
-            "pa_PWM": {
-                "drv_pwm": "1"
+            "pa_HardwareSPI": {
+                "drv_spi": "1"
             }
+        },
+        "_platform": {
+            "mcu_stm32_h7": 1,
+            "freertos": 1,
+            "rtthread": "0"
         }
     }
 }
