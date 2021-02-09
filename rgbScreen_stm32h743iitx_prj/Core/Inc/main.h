@@ -70,10 +70,6 @@ void Error_Handler(void);
 #define rightArmLimit_GPIO_Port GPIOE
 #define arm_En2_Pin GPIO_PIN_12
 #define arm_En2_GPIO_Port GPIOC
-#define arm_step0_Pin GPIO_PIN_0
-#define arm_step0_GPIO_Port GPIOD
-#define arm_step1_Pin GPIO_PIN_1
-#define arm_step1_GPIO_Port GPIOD
 #define arm_step2_Pin GPIO_PIN_2
 #define arm_step2_GPIO_Port GPIOD
 #define arm_dir0_Pin GPIO_PIN_3
