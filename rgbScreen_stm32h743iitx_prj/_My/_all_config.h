@@ -1,6 +1,7 @@
 #define mcu_stm32_h7 1
 #define freertos 1
 #define rtthread 0
+#define use_Ads1112 0
 #define INPUT_USE_KEYPAD 0
 #define keypad_row 4
 #define keypad_col 4
@@ -14,6 +15,6 @@
 #define keypad_col4 GPIOA,GPIO_PIN_1
 #define DISPLAY_USE_R61408 1
 #define DISPLAY_USE_SSD1306 0
-#define drv_pwm 1
 #define drv_spi 1
 #define drv_iic 1
+#define drv_pwm 1
