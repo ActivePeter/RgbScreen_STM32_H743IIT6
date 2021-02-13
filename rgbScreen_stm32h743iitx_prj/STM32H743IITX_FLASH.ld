@@ -45,6 +45,7 @@ MEMORY
   RAM_D1    (xrw)    : ORIGIN = 0x24000000,   LENGTH = 512K
   RAM_D2    (xrw)    : ORIGIN = 0x30000000,   LENGTH = 288K
   RAM_D3    (xrw)    : ORIGIN = 0x38000000,   LENGTH = 64K
+  RAM_Array_Addr (xrw): ORIGIN = 0xC0000000, LENGTH = 2048K
   FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 2048K
 }
 
@@ -60,6 +61,12 @@ SECTIONS
   } >FLASH
 
   /* The program code and other data into "FLASH" Rom type memory */
+.RAM_Array (NOLOAD):	
+{
+. = ALIGN(4);
+*(.RAM_Array)	
+. = ALIGN(4);
+} >RAM_Array_Addr
   .text :
   {
     . = ALIGN(4);

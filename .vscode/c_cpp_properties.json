@@ -14,7 +14,8 @@
                 "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/STM32H7xx_HAL_Driver/Inc",
                 "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/STM32H7xx_HAL_Driver/Inc/Legacy",
                 "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/CMSIS/Device/ST/STM32H7xx/Include",
-                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/CMSIS/Include"
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/Drivers/CMSIS/Include",
+                "${workspaceFolder}/rgbScreen_stm32h743iitx_prj/_My/pa_CommonLib/src/paLib/drv/pa_USB/tinyusb/src"
             ],
             "defines": [
                 "_DEBUG",

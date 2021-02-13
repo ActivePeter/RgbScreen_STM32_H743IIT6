@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under Ultimate Liberty license
@@ -44,13 +44,12 @@ void Error_Handler(void);
 /* External functions --------------------------------------------------------*/
 
 /* USER CODE BEGIN 0 */
-mmmUSBD_CDC_HandleTypeDef mmmUSBD_CDC_HandleTypeDef1;
+
 /* USER CODE END 0 */
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-USBD_StatusTypeDef
-USBD_Get_USB_Status(HAL_StatusTypeDef hal_status);
+USBD_StatusTypeDef USBD_Get_USB_Status(HAL_StatusTypeDef hal_status);
 
 /* USER CODE END PFP */
 

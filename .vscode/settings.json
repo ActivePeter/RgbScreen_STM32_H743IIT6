@@ -2,6 +2,9 @@
     "gnuGlobal.globalExecutable": "C:\\glo665wb\\bin\\global.exe",
     "gnuGlobal.gtagsExecutable": "C:\\glo665wb\\bin\\gtags.exe",
     "files.associations": {
-        "main_app_c.h": "c"
+        "main_app_c.h": "c",
+        "teeny_usb.h": "c",
+        "teeny_usb_platform.h": "c",
+        "teeny_usb_init.h": "c"
     }
 }

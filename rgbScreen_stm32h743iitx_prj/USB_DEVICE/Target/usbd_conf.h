@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
   * All rights reserved.</center></h2>
   *
   * This software component is licensed by ST under Ultimate Liberty license
@@ -17,7 +17,6 @@
   *
   ******************************************************************************
   */
-
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
@@ -37,20 +36,7 @@
 #include "stm32h7xx_hal.h"
 
 /* USER CODE BEGIN INCLUDE */
-  typedef struct
-  {
-    uint32_t data[512U / 4U]; /* Force 32bits alignment */
-    uint8_t CmdOpCode;
-    uint8_t CmdLength;
-    uint8_t *RxBuffer;
-    uint8_t *TxBuffer;
-    uint32_t RxLength;
-    uint32_t TxLength;
 
-    __IO uint32_t TxState;
-    __IO uint32_t RxState;
-  } mmmUSBD_CDC_HandleTypeDef;
-  extern mmmUSBD_CDC_HandleTypeDef mmmUSBD_CDC_HandleTypeDef1;
 /* USER CODE END INCLUDE */
 
 /** @addtogroup USBD_OTG_DRIVER

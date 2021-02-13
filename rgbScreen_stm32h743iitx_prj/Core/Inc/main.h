@@ -64,8 +64,6 @@ void Error_Handler(void);
 #define LCD_CLK_GPIO_Port GPIOE
 #define stepperMs3_Pin GPIO_PIN_4
 #define stepperMs3_GPIO_Port GPIOE
-#define leftArmLimit_Pin GPIO_PIN_5
-#define leftArmLimit_GPIO_Port GPIOE
 #define rightArmLimit_Pin GPIO_PIN_6
 #define rightArmLimit_GPIO_Port GPIOE
 #define arm_En2_Pin GPIO_PIN_12
@@ -76,8 +74,6 @@ void Error_Handler(void);
 #define arm_dir0_GPIO_Port GPIOD
 #define arm_dir1_Pin GPIO_PIN_4
 #define arm_dir1_GPIO_Port GPIOD
-#define arm_dir2_Pin GPIO_PIN_5
-#define arm_dir2_GPIO_Port GPIOD
 #define arm_En0_Pin GPIO_PIN_6
 #define arm_En0_GPIO_Port GPIOD
 #define arm_En1_Pin GPIO_PIN_7
