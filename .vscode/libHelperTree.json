@@ -24,54 +24,70 @@
                     "keypad_col2": 0,
                     "keypad_col3": 0,
                     "keypad_col4": 0
-                }
-            },
-            "display": {
-                "_RgbScreen": {
-                    "UseRgbScreen": 1,
-                    "R61408": {
-                        "DISPLAY_USE_R61408": 1,
-                        "R61408_SPI_DCLK": "GPIOB,GPIO_PIN_7",
-                        "R61408_SPI_SDA": "GPIOB,GPIO_PIN_6",
-                        "R61408_SPI_CS": "GPIOE,GPIO_PIN_3",
-                        "R61408_RST": "GPIOE,GPIO_PIN_2"
-                    }
                 },
-                "ssd1306": {
-                    "DISPLAY_USE_SSD1306": "0"
-                },
-                "_ConvertIC": {
-                    "SSD1963": {
-                        "DISPLAY_USE_SSD1963": 0
-                    }
+                "GT911": {
+                    "using_GT911": 1,
+                    "GT911_int_gpio": "GPIOB,GPIO_PIN_5",
+                    "GT911_rst_gpio": "GPIOB,GPIO_PIN_4",
+                    "GT911_iic_id": 1
                 }
             },
             "graphic": {
                 "lvgl": {
                     "GRAPHIC_USE_LVGL": 1
                 }
+            },
+            "display": {
+                "_RgbScreen": {
+                    "R61408": {
+                        "DISPLAY_USE_R61408": 1,
+                        "R61408_SPI_DCLK": "GPIOB,GPIO_PIN_7",
+                        "R61408_SPI_SDA": "GPIOB,GPIO_PIN_6",
+                        "R61408_SPI_CS": "GPIOE,GPIO_PIN_3",
+                        "R61408_RST": "GPIOE,GPIO_PIN_2"
+                    },
+                    "UseRgbScreen": 1
+                },
+                "_ConvertIC": {
+                    "SSD1963": {
+                        "DISPLAY_USE_SSD1963": 0
+                    }
+                },
+                "ssd1306": {
+                    "DISPLAY_USE_SSD1306": "0"
+                }
             }
         },
         "drv": {
-            "pa_SDRAM": {
-                "drv_sdram": 1
-            },
             "pa_USB": {
-                "using_tiny_usb": 1,
+                "using_stm32h7_usb": 1,
+                "using_tiny_usb": 0,
                 "tiny_usb_cdc_cnt": 2,
                 "tiny_usb_cdc_demo": 0
             },
-            "pa_Ltdc": {
-                "drv_ltdc": 1
+            "pa_SDRAM": {
+                "drv_sdram": 1
             },
             "pa_PWM": {
                 "drv_pwm": "1"
             },
-            "pa_HardwareIIC": {
-                "drv_iic": "1"
+            "pa_Output": {
+                "output_use": 1,
+                "output_use_cdc": 1,
+                "output_use_serial": 0
+            },
+            "pa_Ltdc": {
+                "drv_ltdc": 1
             },
             "pa_HardwareSPI": {
                 "drv_spi": "1"
+            },
+            "pa_HardwareIIC": {
+                "drv_iic": "1",
+                "iic_using_id1": 1,
+                "iic_using_id2": 0,
+                "iic_using_id3": 0,
+                "iic_using_id4": 0
             }
         }
     }
